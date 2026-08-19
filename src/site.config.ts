@@ -36,7 +36,7 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: 'Fumadocs AI Starter',
   description: '一个内置搜索、机器可读输出和可选 AI 助手的 Fumadocs 文档模板。',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+  url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:3000',
   locale: 'zh-CN',
   repository: {},
   features: {
