@@ -25,7 +25,7 @@ pnpm dev
 3. 编辑 `docs/` 中的 MDX 页面，并通过各级 `meta.json` 调整导航。
 4. 按需修改首页、主题色和 `tests/e2e/site.spec.ts` 中的内容断言。
 
-正式部署时，`siteConfig.url` 必须是带协议的绝对地址。
+正式部署时，在平台环境变量中设置 `NEXT_PUBLIC_SITE_URL`，值必须是带协议的绝对地址。
 
 ## 功能
 
@@ -62,7 +62,15 @@ pnpm test:e2e
 
 ## 部署
 
-将仓库导入 Vercel，保留默认 Next.js 构建设置即可。AI 所需环境变量应配置在 Vercel 项目中，而不是写入代码。由于搜索、AI、MCP 和动态输出使用 Route Handlers，本模板不是纯静态导出项目。
+### Vercel
+
+将仓库导入 Vercel，平台会读取 `vercel.json` 并使用 Next.js 原生构建。至少配置 `NEXT_PUBLIC_SITE_URL`；启用 AI 时再配置 `OPENROUTER_API_KEY` 和可选的 `OPENROUTER_MODEL`。
+
+### Netlify
+
+将仓库导入 Netlify，平台会读取 `netlify.toml`，并通过 Netlify Next.js Runtime 部署 Route Handlers。环境变量要求与 Vercel 相同。
+
+由于搜索、AI、MCP 和动态输出使用 Route Handlers，本模板不是纯静态导出项目。
 
 ## 许可证
 

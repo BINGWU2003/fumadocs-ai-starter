@@ -21,6 +21,10 @@ next-env.d.ts
 playwright-report/
 test-results/
 
+# Deployment platforms
+.vercel/
+.netlify/
+
 # Environment files
 .env*
 !.env.example
