@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+:root {
+  --color-fd-primary: #404040;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-ring: #7f7f7f;
+  --fd-layout-width: 90rem;
+  --fd-sidebar-width: 17rem;
+  --fd-toc-width: 16rem;
+}
+
+.dark {
+  --color-fd-primary: #bfbfbf;
+  --color-fd-primary-foreground: #171717;
+  --color-fd-ring: #bfbfbf;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0 !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+.prose {
+  --tw-prose-body: var(--color-fd-foreground);
+  line-height: 1.75;
+}
+
+.prose h2 {
+  margin-top: 2.75rem;
+  scroll-margin-top: 6rem;
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  scroll-margin-top: 6rem;
+}
+
+.prose h5 {
+  font-weight: 500;
+}
+
+.prose h6 {
+  font-weight: 400;
+}
+
+.prose a {
+  text-underline-offset: 3px;
+}
+
+.page-actions {
+  margin-top: 1.25rem;
+}
+

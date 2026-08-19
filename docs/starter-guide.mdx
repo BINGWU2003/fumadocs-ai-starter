@@ -1,0 +1,30 @@
+---
+title: "定制这个模板"
+sidebarTitle: "模板使用指南"
+description: "替换站点品牌、导航和示例内容的最短路径。"
+---
+
+## 1. 修改站点配置
+
+编辑 `src/site.config.ts`，至少替换站点名称、描述、正式域名和仓库地址。正式部署时，`url` 必须是包含协议的绝对地址。
+
+## 2. 替换示例文档
+
+页面来自 `docs/` 下的 MDX 文件，导航由各级 `meta.json` 控制。你可以逐页替换当前 Agent Skills 示例；完全移除示例内容后，也可以删除 `docs/LICENSE` 中仅适用于该示例的许可说明。
+
+## 3. 配置可选能力
+
+- 搜索、Markdown 页面、OG 图片、sitemap 和 LLM 文本输出默认启用。
+- AI 助手要求根目录环境文件中存在 `OPENROUTER_API_KEY`。
+- MCP 服务默认关闭；启用前请在配置中打开开关，并根据部署环境评估访问控制。
+
+## 4. 验证
+
+```powershell
+pnpm lint
+pnpm typecheck
+pnpm build
+pnpm test:e2e
+```
+
+发布前还应确认 README、站点配置和页面内容中没有遗留的示例品牌或链接。

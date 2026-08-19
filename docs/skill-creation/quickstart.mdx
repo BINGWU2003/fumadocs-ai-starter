@@ -1,0 +1,78 @@
+---
+title: "快速入门"
+description: "创建你的第一个 Agent Skill，并在 VS Code 中查看运行效果。"
+---
+
+在本教程中，你将创建一个技能，让智能体能够使用随机数生成器掷骰子。
+
+## 前提条件 [#prerequisites]
+
+- [VS Code](https://code.visualstudio.com/) with [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+
+<Note>
+本教程使用 VS Code，但 Agent Skills 是一种开放格式。同一个技能也能在任何兼容的智能体中使用，包括 Claude Code 和 OpenAI Codex。
+</Note>
+
+## 创建技能 [#create-the-skill]
+
+技能是一个包含 `SKILL.md` 文件的文件夹。VS Code 默认在 `.agents/skills/` 中查找技能。请在项目中创建 `.agents/skills/roll-dice/SKILL.md`：
+
+````markdown .agents/skills/roll-dice/SKILL.md
+---
+name: roll-dice
+description: 使用随机数生成器掷骰子。当用户要求掷一个骰子（d6、d20 等）、掷多个骰子或生成随机掷骰结果时使用。
+---
+
+要掷骰子，请使用以下命令生成从 1 到给定面数之间的随机数：
+
+```bash
+echo $((RANDOM % <sides> + 1))
+```
+
+```powershell
+Get-Random -Minimum 1 -Maximum (<sides> + 1)
+```
+
+将 `<sides>` 替换为骰子的面数（例如，标准骰子为 6，d20 为 20）。
+````
+
+这样就完成了：只有一个文件，不到 20 行。各部分的作用如下：
+
+- **`name`** — 技能的简短标识符，必须与文件夹名称一致。
+- **`description`** — 告诉智能体何时使用此技能。智能体依靠它判断是否激活技能。
+- **正文** — 激活技能后，智能体需要遵循的指令。此处的指令要求智能体使用终端命令生成随机数，并把用户要求的面数代入命令。
+
+## 试用技能 [#try-it-out]
+
+1. 在 VS Code 中打开项目。
+2. 打开 Copilot Chat 面板。
+3. 在聊天面板底部的模式下拉列表中选择 **Agent** 模式。
+4. 输入 `/skills`，确认列表中出现 `roll-dice`。如果没有，请检查该文件相对于项目根目录的位置是否为 `.agents/skills/roll-dice/SKILL.md`。
+5. 提问：**“掷一个 d20”**
+
+智能体应该会激活 `roll-dice` 技能。它可能会请求运行终端命令的权限，请允许执行。随后它会运行命令并返回 1 到 20 之间的随机数。
+
+<Note>
+不同模型使用工具的可靠性有所差异：有些模型会稳定地遵循技能指令并运行命令，另一些则可能尝试自行作答。如果智能体没有运行终端命令就直接回答，请尝试从模型下拉列表中选择其他模型。
+</Note>
+
+## 工作原理 [#how-it-works]
+
+后台发生了以下过程：
+
+1. **发现** — 聊天会话开始时，智能体扫描默认技能目录并找到你的技能。它只读取 `name` 和 `description`，这些信息足以判断技能何时可能相关。
+
+2. **激活** — 当你要求掷骰子时，智能体将问题与技能描述匹配，并把完整的 `SKILL.md` 正文加载到上下文中。
+
+3. **执行** — 智能体遵循正文中的指令，根据你要求的骰子面数调整终端命令。
+
+此过程使用**渐进式披露（progressive disclosure）**，让智能体能够访问大量技能，而无需预先加载所有技能指令。
+
+## 后续步骤 [#next-steps]
+
+你已经创建了一个可用的 Agent Skill。接下来可以阅读：
+
+- **[最佳实践](/skill-creation/best-practices)** — 如何编写范围明确且有效的技能。
+- **[优化技能描述](/skill-creation/optimizing-descriptions)** — 测试并改进技能描述，让技能针对正确的提示词激活。
+- **[规范](/specification)** — `SKILL.md` 文件的完整格式参考。
+- **[示例技能](https://github.com/anthropics/skills)** — 在 GitHub 上浏览真实技能。

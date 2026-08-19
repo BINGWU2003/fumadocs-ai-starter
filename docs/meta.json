@@ -1,0 +1,12 @@
+{
+  "title": "示例文档",
+  "pages": [
+    "index",
+    "starter-guide",
+    "specification",
+    "---面向技能创作者---",
+    "...skill-creation",
+    "---面向客户端实现者---",
+    "...client-implementation"
+  ]
+}

@@ -1,0 +1,69 @@
+---
+title: "Agent Skills 概览"
+sidebarTitle: "概览"
+description: "一种为 AI 智能体赋予新能力和专业知识的标准化方式。"
+---
+
+> 本站将 Agent Skills 中文文档作为完整内容示例。它不是 Agent Skills 官方网站；来源与许可信息见仓库中的 ATTRIBUTION.md。
+
+## 什么是 Agent Skills？ [#what-are-agent-skills]
+
+Agent Skills 是一种轻量、开放的格式，用于通过专业知识和工作流扩展 AI 智能体的能力。
+
+技能的核心是一个包含 `SKILL.md` 文件的文件夹。该文件至少包含元数据（`name` 和 `description`）以及说明智能体如何执行特定任务的指令。技能还可以附带脚本、参考资料、模板和其他资源。
+
+```
+my-skill/
+├── SKILL.md          # 必需：元数据 + 指令
+├── scripts/          # 可选：可执行代码
+├── references/       # 可选：文档
+├── assets/           # 可选：模板、资源
+└── ...               # 其他任意文件或目录
+```
+
+## 为什么使用 Agent Skills？ [#why-agent-skills]
+
+智能体的能力越来越强，但往往缺少可靠完成实际工作所需的上下文。技能将过程性知识以及公司、团队和用户特定的上下文封装到便携、受版本控制的文件夹中，供智能体按需加载，从而解决这一问题。技能为智能体带来：
+
+- **领域专长**：将法律审查流程、数据分析流水线、演示文稿格式设置等专业知识沉淀为可复用的指令和资源。
+- **可重复的工作流**：把多步骤任务转化为一致、可审计的流程。
+- **跨产品复用**：技能只需构建一次，即可用于任何兼容技能格式的智能体。
+
+## Agent Skills 如何工作？ [#how-do-agent-skills-work]
+
+智能体通过**渐进式披露（progressive disclosure）**分三个阶段加载技能：
+
+1. **发现**：启动时，智能体仅加载每个可用技能的名称和描述，这些信息足以判断技能何时可能相关。
+
+2. **激活**：当任务与技能描述匹配时，智能体会把完整的 `SKILL.md` 指令读入上下文。
+
+3. **执行**：智能体遵循指令，并可按需执行附带的代码或加载引用的文件。
+
+完整指令只会在任务需要时加载，因此智能体可以随时备有大量技能，同时只占用很少的上下文。
+
+## 在哪里可以使用 Agent Skills？ [#where-can-i-use-agent-skills]
+
+大量 AI 工具和智能体客户端都支持 Agent Skills。不同客户端的安装位置、发现机制和运行能力可能有所不同。
+
+## 开放开发 [#open-development]
+
+Agent Skills 格式最初由 [Anthropic](https://www.anthropic.com/) 开发，随后作为开放标准发布，并已被越来越多的智能体产品采用。该标准欢迎整个生态系统参与贡献。
+
+## 开始使用 Agent Skills [#get-started-with-agent-skills]
+
+<CardGroup cols={2}>
+  <Card
+    title="快速入门"
+    icon="rocket"
+    href="/skill-creation/quickstart"
+  >
+    创建你的第一个 Agent Skill，并亲自看看它如何工作。
+  </Card>
+  <Card
+    title="规范"
+    icon="file-code"
+    href="/specification"
+  >
+    Agent Skills 的完整格式规范。
+  </Card>
+</CardGroup>
