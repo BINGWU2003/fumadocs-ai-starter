@@ -34,7 +34,7 @@ pnpm dev
 - `/llms.txt` 与 `/llms-full.txt`
 - sitemap、robots 和动态 OG 图片
 - 桌面与移动端 Playwright 测试
-- 可选 OpenRouter AI 文档助手
+- 可选 Gemini AI 文档助手
 - 可选只读 MCP 文档服务
 
 ## AI 文档助手
@@ -45,7 +45,7 @@ AI 默认不需要配置即可构建。只有 `siteConfig.features.ai` 为 `true
 Copy-Item .env.example .env.local
 ```
 
-然后在 `.env.local` 中填写 `OPENROUTER_API_KEY`，必要时覆盖 `OPENROUTER_MODEL`。不要提交真实密钥。公开部署前还应配置限流、访问控制和费用告警。
+然后在 `.env.local` 中填写 Google AI Studio 提供的 `GOOGLE_GENERATIVE_AI_API_KEY`，必要时覆盖 `GEMINI_MODEL`。不要提交真实密钥。公开部署前还应配置限流、访问控制和费用告警。
 
 ## MCP
 
@@ -64,7 +64,7 @@ pnpm test:e2e
 
 ### Vercel
 
-将仓库导入 Vercel，平台会读取 `vercel.json` 并使用 Next.js 原生构建。至少配置 `NEXT_PUBLIC_SITE_URL`；启用 AI 时再配置 `OPENROUTER_API_KEY` 和可选的 `OPENROUTER_MODEL`。
+将仓库导入 Vercel，平台会读取 `vercel.json` 并使用 Next.js 原生构建。至少配置 `NEXT_PUBLIC_SITE_URL`；启用 AI 时再配置 `GOOGLE_GENERATIVE_AI_API_KEY` 和可选的 `GEMINI_MODEL`。
 
 ### Netlify
 

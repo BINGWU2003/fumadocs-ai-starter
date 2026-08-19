@@ -10,9 +10,9 @@ export async function POST(request: Request) {
     return Response.json({ error: 'AI 服务未启用。' }, { status: 404 });
   }
 
-  if (!process.env.OPENROUTER_API_KEY) {
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     return Response.json(
-      { error: 'AI 服务尚未配置 OPENROUTER_API_KEY。' },
+      { error: 'AI 服务尚未配置 GOOGLE_GENERATIVE_AI_API_KEY。' },
       { status: 503 },
     );
   }
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
   ]);
 
   return createAgentUIStreamResponse({
-    agent: createDocsAgent(process.env.OPENROUTER_API_KEY),
+    agent: createDocsAgent(process.env.GOOGLE_GENERATIVE_AI_API_KEY),
     uiMessages: payload.messages,
     abortSignal: signal,
   });

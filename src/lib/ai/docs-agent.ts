@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
+import { createGoogle } from '@ai-sdk/google';
 import { Document, type DocumentData } from 'flexsearch';
 import { InferAgentUIMessage, isStepCount, tool, ToolLoopAgent } from 'ai';
 import { z } from 'zod';
@@ -62,10 +62,10 @@ const searchDocs = tool({
 });
 
 export function createDocsAgent(apiKey: string) {
-  const openrouter = createOpenRouter({ apiKey });
+  const google = createGoogle({ apiKey });
 
   return new ToolLoopAgent({
-    model: openrouter.chat(process.env.OPENROUTER_MODEL ?? 'openai/gpt-5.6-luna'),
+    model: google(process.env.GEMINI_MODEL ?? 'gemini-3.7-flash'),
     instructions: [
       `你是 ${siteConfig.name} 的 AI 文档助手。`,
       '回答问题前，先使用 searchDocs 工具检索文档。',

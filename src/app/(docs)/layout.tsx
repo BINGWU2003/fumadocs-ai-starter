@@ -8,7 +8,8 @@ import { source } from '@/lib/source';
 import { siteConfig } from '@/site.config';
 
 export default function DocsRootLayout({ children }: { children: React.ReactNode }) {
-  const aiEnabled = siteConfig.features.ai && Boolean(process.env.OPENROUTER_API_KEY);
+  const aiEnabled =
+    siteConfig.features.ai && Boolean(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
 
   return (
     <DocsLayout tree={source.getPageTree()} {...baseOptions()}>

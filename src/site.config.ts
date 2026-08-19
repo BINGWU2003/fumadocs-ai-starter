@@ -38,7 +38,9 @@ export const siteConfig: SiteConfig = {
   description: '一个内置搜索、机器可读输出和可选 AI 助手的 Fumadocs 文档模板。',
   url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:3000',
   locale: 'zh-CN',
-  repository: {},
+  repository: {
+    url: 'https://github.com/BINGWU2003/fumadocs-ai-starter',
+  },
   features: {
     ai: true,
     mcp: false,

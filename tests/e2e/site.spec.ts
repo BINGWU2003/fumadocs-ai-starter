@@ -69,6 +69,10 @@ test.describe('desktop page chrome', () => {
 
     await page.getByRole('button', { name: '切换主题' }).click();
     await expect(page.locator('html')).toHaveClass(/dark/);
+    await expect(page.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
+      'href',
+      'https://github.com/BINGWU2003/fumadocs-ai-starter',
+    );
 
     await page.keyboard.press('Control+k');
     const searchInput = page.getByRole('textbox', { name: '搜索文档' });
