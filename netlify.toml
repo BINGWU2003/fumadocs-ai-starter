@@ -1,12 +1,12 @@
 [build]
-  command = "pnpm build"
-  publish = ".next"
+command = "pnpm build"
+publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "22.12.0"
+NODE_VERSION = "22.12.0"
 
 [dev]
-  command = "pnpm dev"
-  targetPort = 3000
-  port = 8888
-  framework = "#auto"
+command = "pnpm dev"
+targetPort = 3000
+port = 8888
+framework = "#auto"

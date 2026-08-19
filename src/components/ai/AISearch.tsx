@@ -3,14 +3,7 @@
 import { useChat, type UseChatHelpers } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import { cn } from 'cnfast';
-import {
-  Loader2,
-  MessageCircleIcon,
-  RefreshCw,
-  SearchIcon,
-  Send,
-  X,
-} from 'lucide-react';
+import { Loader2, MessageCircleIcon, RefreshCw, SearchIcon, Send, X } from 'lucide-react';
 import {
   type ComponentProps,
   createContext,
@@ -27,10 +20,7 @@ import type { DocsAgentUIMessage } from '@/lib/ai/docs-agent';
 import { siteConfig } from '@/site.config';
 import { Markdown } from './Markdown';
 
-type SearchInvocation = Extract<
-  DocsAgentUIMessage['parts'][number],
-  { type: 'tool-searchDocs' }
->;
+type SearchInvocation = Extract<DocsAgentUIMessage['parts'][number], { type: 'tool-searchDocs' }>;
 
 interface AISearchContextValue {
   open: boolean;
@@ -77,7 +67,7 @@ export function AISearchTrigger({
       data-state={open ? 'open' : 'closed'}
       className={cn(
         position === 'float' && [
-          'fixed bottom-4 inset-e-[calc(--spacing(4)+var(--removed-body-scroll-bar-size,0px))] z-20 gap-2 px-4 shadow-lg transition-[translate,opacity]',
+          'fixed inset-e-[calc(--spacing(4)+var(--removed-body-scroll-bar-size,0px))] bottom-4 z-20 gap-2 px-4 shadow-lg transition-[translate,opacity]',
           open && 'translate-y-10 opacity-0',
         ],
         className,
@@ -190,11 +180,7 @@ function AISearchInput(props: ComponentProps<'form'>) {
   };
 
   return (
-    <form
-      {...props}
-      className={cn('flex items-start pe-2', props.className)}
-      onSubmit={submit}
-    >
+    <form {...props} className={cn('flex items-start pe-2', props.className)} onSubmit={submit}>
       <Input
         aria-label="向 AI 询问文档"
         value={input}
@@ -306,10 +292,7 @@ function MessageList(props: ComponentProps<'div'>) {
     <div
       ref={containerRef}
       {...props}
-      className={cn(
-        'fd-scroll-container flex min-w-0 flex-col overflow-y-auto',
-        props.className,
-      )}
+      className={cn('fd-scroll-container flex min-w-0 flex-col overflow-y-auto', props.className)}
     />
   );
 }
@@ -386,7 +369,7 @@ export function AISearchPanel() {
       <button
         type="button"
         aria-label="关闭 AI 助手"
-        className="fixed inset-0 z-40 bg-fd-overlay backdrop-blur-xs animate-fd-fade-in lg:hidden"
+        className="fixed inset-0 z-40 animate-fd-fade-in bg-fd-overlay backdrop-blur-xs lg:hidden"
         onClick={() => setOpen(false)}
       />
       <aside
@@ -394,7 +377,7 @@ export function AISearchPanel() {
         aria-label="AI 文档助手"
         className={cn(
           'z-50 overflow-hidden bg-fd-card text-fd-card-foreground [--ai-chat-width:400px] 2xl:[--ai-chat-width:460px]',
-          'fixed inset-x-2 inset-y-4 rounded-2xl border shadow-xl lg:sticky lg:inset-auto lg:top-0 lg:ms-auto lg:h-dvh lg:rounded-none lg:border-y-0 lg:border-e-0 lg:border-s lg:shadow-none',
+          'fixed inset-x-2 inset-y-4 rounded-2xl border shadow-xl lg:sticky lg:inset-auto lg:top-0 lg:ms-auto lg:h-dvh lg:rounded-none lg:border-y-0 lg:border-s lg:border-e-0 lg:shadow-none',
           'lg:in-[#nd-docs-layout]:[grid-area:toc] lg:in-[#nd-notebook-layout]:col-start-5 lg:in-[#nd-notebook-layout]:row-span-full',
           'animate-fd-dialog-in lg:animate-[ask-ai-open_200ms]',
         )}

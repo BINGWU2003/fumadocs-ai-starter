@@ -1,7 +1,7 @@
 ---
-title: "评估技能输出质量"
-sidebarTitle: "评估技能"
-description: "如何通过评估驱动的迭代，测试技能能否生成优质输出。"
+title: '评估技能输出质量'
+sidebarTitle: '评估技能'
+description: '如何通过评估驱动的迭代，测试技能能否生成优质输出。'
 ---
 
 你编写了一个技能，用一条提示词试过，看起来可以工作。但它在不同提示词和边界情况下是否始终可靠？与完全不使用技能相比是否更好？运行结构化评估（eval）能够回答这些问题，并建立反馈循环，帮助你系统地改进技能。
@@ -121,7 +121,9 @@ csv-analyzer-workspace/
 ```
 
 <Tip>
-在 Claude Code 中，子智能体任务完成时，[任务完成通知](https://platform.claude.com/docs/en/agent-sdk/typescript#sdk-task-notification-message)会包含 `total_tokens` 和 `duration_ms`。请立即保存这些值，因为它们不会在其他地方持久化。
+  在 Claude Code
+  中，子智能体任务完成时，[任务完成通知](https://platform.claude.com/docs/en/agent-sdk/typescript#sdk-task-notification-message)会包含
+  `total_tokens` 和 `duration_ms`。请立即保存这些值，因为它们不会在其他地方持久化。
 </Tip>
 
 ## 编写断言 [#writing-assertions]
@@ -208,7 +210,8 @@ csv-analyzer-workspace/
 - **不仅要审查结果，也要审查断言本身。** 评分时注意断言是否过于简单（无论技能质量如何总会通过）、过于困难（即使输出很好也总会失败）或无法验证（仅凭输出无法检查）。请在下一轮迭代中修正这些断言。
 
 <Tip>
-比较两个技能版本时，可以尝试**盲测比较**：把两份输出交给 LLM 评委，但不透露各自来自哪个版本。评委使用自己的评分标准评价组织、格式、可用性和完成度等整体质量，不会受到“哪个版本理应更好”的偏见影响。这能补充断言评分：两份输出可能都通过全部断言，但整体质量仍有明显差异。
+  比较两个技能版本时，可以尝试**盲测比较**：把两份输出交给 LLM
+  评委，但不透露各自来自哪个版本。评委使用自己的评分标准评价组织、格式、可用性和完成度等整体质量，不会受到“哪个版本理应更好”的偏见影响。这能补充断言评分：两份输出可能都通过全部断言，但整体质量仍有明显差异。
 </Tip>
 
 ## 汇总结果 [#aggregating-results]
@@ -224,12 +227,12 @@ csv-analyzer-workspace/
       "tokens": { "mean": 3800, "stddev": 400 }
     },
     "without_skill": {
-      "pass_rate": { "mean": 0.33, "stddev": 0.10 },
+      "pass_rate": { "mean": 0.33, "stddev": 0.1 },
       "time_seconds": { "mean": 32.0, "stddev": 8.0 },
       "tokens": { "mean": 2100, "stddev": 300 }
     },
     "delta": {
-      "pass_rate": 0.50,
+      "pass_rate": 0.5,
       "time_seconds": 13.0,
       "tokens": 1700
     }
@@ -240,7 +243,8 @@ csv-analyzer-workspace/
 `delta` 表示技能付出的成本（更多时间和 token）以及获得的收益（更高的通过率）。一项技能增加 13 秒却把通过率提高 50 个百分点，通常值得采用；如果 token 用量翻倍却只提高 2 个百分点，可能并不划算。
 
 <Note>
-标准差（`stddev`）只有在每项评估运行多次时才有意义。在只有 2—3 个测试用例且各运行一次的早期迭代中，请重点关注原始通过数量和差值。随着测试集扩大、每项评估运行多次，统计指标才会变得有用。
+  标准差（`stddev`）只有在每项评估运行多次时才有意义。在只有 2—3
+  个测试用例且各运行一次的早期迭代中，请重点关注原始通过数量和差值。随着测试集扩大、每项评估运行多次，统计指标才会变得有用。
 </Note>
 
 ## 分析规律 [#analyzing-patterns]
@@ -294,5 +298,6 @@ csv-analyzer-workspace/
 当结果令人满意、反馈始终为空，或各轮迭代之间不再有明显改进时，即可停止。
 
 <Tip>
-[`skill-creator`](https://github.com/anthropics/skills/tree/main/skills/skill-creator) 技能可以自动完成此工作流的大部分内容，包括运行评估、为断言评分、汇总基准，以及展示结果供人工审查。
+  [`skill-creator`](https://github.com/anthropics/skills/tree/main/skills/skill-creator)
+  技能可以自动完成此工作流的大部分内容，包括运行评估、为断言评分、汇总基准，以及展示结果供人工审查。
 </Tip>

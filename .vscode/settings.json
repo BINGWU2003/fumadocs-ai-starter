@@ -1,0 +1,42 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.format.oxc": "explicit",
+    "source.fixAll.oxc": "explicit"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/.source/**": true,
+    "**/node_modules/**": true,
+    "**/playwright-report/**": true,
+    "**/test-results/**": true
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/.source": true,
+    "**/node_modules": true,
+    "**/playwright-report": true,
+    "**/test-results": true
+  },
+  "npm.packageManager": "pnpm",
+  "oxc.enable.oxfmt": true,
+  "oxc.enable.oxlint": true,
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "oxc.lint.run": "onType",
+  "oxc.requireConfig": true,
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.updateImportsOnFileMove.enabled": "always"
+}

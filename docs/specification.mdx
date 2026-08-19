@@ -1,6 +1,6 @@
 ---
-title: "规范"
-description: "Agent Skills 的完整格式规范。"
+title: '规范'
+description: 'Agent Skills 的完整格式规范。'
 ---
 
 ## 目录结构 [#directory-structure]
@@ -22,14 +22,14 @@ skill-name/
 
 ### Frontmatter [#frontmatter]
 
-| 字段 | 是否必需 | 约束 |
-|-------|----------|-------------|
-| `name` | 是 | 最多 64 个字符。只能使用小写字母、数字和连字符。不得（MUST NOT）以连字符开头或结尾。 |
-| `description` | 是 | 最多 1024 个字符。不得（MUST NOT）为空。说明技能的作用以及何时使用。 |
-| `license` | 否 | 许可证名称，或对技能所附许可证文件的引用。 |
-| `compatibility` | 否 | 最多 500 个字符。说明环境要求（目标产品、系统软件包、网络访问等）。 |
-| `metadata` | 否 | 用于附加元数据的任意键值映射（字符串键到字符串值的映射）。 |
-| `allowed-tools` | 否 | 以空格分隔、已预先批准供技能使用的工具字符串。（实验性） |
+| 字段            | 是否必需 | 约束                                                                                 |
+| --------------- | -------- | ------------------------------------------------------------------------------------ |
+| `name`          | 是       | 最多 64 个字符。只能使用小写字母、数字和连字符。不得（MUST NOT）以连字符开头或结尾。 |
+| `description`   | 是       | 最多 1024 个字符。不得（MUST NOT）为空。说明技能的作用以及何时使用。                 |
+| `license`       | 否       | 许可证名称，或对技能所附许可证文件的引用。                                           |
+| `compatibility` | 否       | 最多 500 个字符。说明环境要求（目标产品、系统软件包、网络访问等）。                  |
+| `metadata`      | 否       | 用于附加元数据的任意键值映射（字符串键到字符串值的映射）。                           |
+| `allowed-tools` | 否       | 以空格分隔、已预先批准供技能使用的工具字符串。（实验性）                             |
 
 <Card>
 **最小示例：**
@@ -50,14 +50,16 @@ description: 提取 PDF 文本、填写表单和合并文件。处理 PDF 时使
 license: Apache-2.0
 metadata:
   author: example-org
-  version: "1.0"
+  version: '1.0'
 ---
 ```
+
 </Card>
 
 #### `name` 字段 [#name-field]
 
 必需的 `name` 字段：
+
 - 必须（MUST）为 1–64 个字符
 - 只能（MAY ONLY）包含 Unicode 小写字母数字字符（`a-z`、`0-9`）和连字符（`-`）
 - 不得（MUST NOT）以连字符（`-`）开头或结尾
@@ -77,20 +79,25 @@ name: code-review
 ```
 
 **无效示例：**
+
 ```yaml
-name: PDF-Processing  # 不允许大写字母
+name: PDF-Processing # 不允许大写字母
 ```
+
 ```yaml
-name: -pdf  # 不能以连字符开头
+name: -pdf # 不能以连字符开头
 ```
+
 ```yaml
-name: pdf--processing  # 不允许连续的连字符
+name: pdf--processing # 不允许连续的连字符
 ```
+
 </Card>
 
 #### `description` 字段 [#description-field]
 
 必需的 `description` 字段：
+
 - 必须（MUST）为 1–1024 个字符
 - 应该（SHOULD）同时说明技能的作用以及何时使用
 - 应该（SHOULD）包含有助于智能体识别相关任务的具体关键词
@@ -102,82 +109,62 @@ description: 从 PDF 文件中提取文本和表格、填写 PDF 表单并合并
 ```
 
 **较差示例：**
+
 ```yaml
 description: 帮助处理 PDF。
 ```
+
 </Card>
 
 #### `license` 字段 [#license-field]
 
 可选的 `license` 字段：
+
 - 指定适用于该技能的许可证
 - 建议保持简短（填写许可证名称或技能所附许可证文件的名称）
 
-<Card>
-**示例：**
-```yaml
-license: 专有许可证。完整条款见 LICENSE.txt
-```
-</Card>
+<Card>**示例：** ```yaml license: 专有许可证。完整条款见 LICENSE.txt ```</Card>
 
 #### `compatibility` 字段 [#compatibility-field]
 
 可选的 `compatibility` 字段：
+
 - 如果提供，必须（MUST）为 1–500 个字符
 - 只有当技能具有特定环境要求时才应该（SHOULD）包含此字段
 - 可以（MAY）说明目标产品、所需系统软件包、网络访问需求等
 
 <Card>
-**示例：**
-```yaml
-compatibility: 适用于 Claude Code（或类似产品）
-```
-```yaml
-compatibility: 需要 git、docker、jq 和互联网访问权限
-```
-```yaml
-compatibility: 需要 Python 3.14+ 和 uv
-```
+  **示例：** ```yaml compatibility: 适用于 Claude Code（或类似产品） ``` ```yaml compatibility: 需要
+  git、docker、jq 和互联网访问权限 ``` ```yaml compatibility: 需要 Python 3.14+ 和 uv ```
 </Card>
 
-<Note>
-大多数技能不需要 `compatibility` 字段。
-</Note>
+<Note>大多数技能不需要 `compatibility` 字段。</Note>
 
 #### `metadata` 字段 [#metadata-field]
 
 可选的 `metadata` 字段：
+
 - 字符串键到字符串值的映射
 - 客户端可以（MAY）用它存储 Agent Skills 规范未定义的附加属性
 - 建议让键名具备合理的唯一性，以免意外冲突
 
-<Card>
-**示例：**
-```yaml
-metadata:
-  author: example-org
-  version: "1.0"
-```
-</Card>
+<Card>**示例：** ```yaml metadata: author: example-org version: "1.0" ```</Card>
 
 #### `allowed-tools` 字段 [#allowed-tools-field]
 
 可选的 `allowed-tools` 字段：
+
 - 以空格分隔、已预先批准运行的工具字符串
 - 此字段为实验性字段，不同智能体实现对它的支持可能不同
 
-<Card>
-**示例：**
-```yaml
-allowed-tools: Bash(git:*) Bash(jq:*) Read
-```
-</Card>
+<Card>**示例：** ```yaml allowed-tools: Bash(git:*) Bash(jq:*) Read ```</Card>
 
 ### 正文内容 [#body-content]
 
 frontmatter 之后的 Markdown 正文包含技能指令。正文没有格式限制，可以编写任何有助于智能体有效完成任务的内容。
 
 建议包含以下章节：
+
 - 分步指令
 - 输入和输出示例
 - 常见边界情况
@@ -191,6 +178,7 @@ frontmatter 之后的 Markdown 正文包含技能指令。正文没有格式限�
 ### `scripts/` [#scripts]
 
 包含可供智能体运行的可执行代码。脚本应该（SHOULD）：
+
 - 自包含，或清楚记录依赖项
 - 提供有帮助的错误消息
 - 妥善处理边界情况
@@ -200,6 +188,7 @@ frontmatter 之后的 Markdown 正文包含技能指令。正文没有格式限�
 ### `references/` [#references]
 
 包含智能体可在需要时读取的补充文档：
+
 - `REFERENCE.md` — 详细的技术参考
 - `FORMS.md` — 表单模板或结构化数据格式
 - 特定领域文件（`finance.md`、`legal.md` 等）
@@ -209,6 +198,7 @@ frontmatter 之后的 Markdown 正文包含技能指令。正文没有格式限�
 ### `assets/` [#assets]
 
 包含静态资源：
+
 - 模板（文档模板、配置模板）
 - 图像（图表、示例）
 - 数据文件（查找表、模式）

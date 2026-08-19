@@ -2,14 +2,12 @@
   "name": "fumadocs-ai-starter",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.34.4",
-  "engines": {
-    "node": ">=22.12"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
     "lint": "oxlint",
     "typecheck": "next typegen && tsc --noEmit",
     "test:e2e": "playwright test"
@@ -42,9 +40,14 @@
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "oxfmt": "^0.64.0",
     "oxlint": "^1.79.0",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
-  }
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "packageManager": "pnpm@10.34.4"
 }

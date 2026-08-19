@@ -213,9 +213,7 @@ export async function POST(request: Request) {
       return jsonRpcResult(body.id, { tools });
     case 'tools/call': {
       const params =
-        body.params && typeof body.params === 'object'
-          ? (body.params as { name?: unknown })
-          : {};
+        body.params && typeof body.params === 'object' ? (body.params as { name?: unknown }) : {};
       return jsonRpcResult(body.id, await callTool(params.name, getArguments(body.params)));
     }
     case 'resources/list':

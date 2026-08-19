@@ -1,7 +1,7 @@
 ---
-title: "在技能中使用脚本"
-sidebarTitle: "使用脚本"
-description: "如何在技能中运行命令并附带可执行脚本。"
+title: '在技能中使用脚本'
+sidebarTitle: '使用脚本'
+description: '如何在技能中运行命令并附带可执行脚本。'
 ---
 
 技能可以指示智能体运行 shell 命令，也可以在 `scripts/` 目录中附带可复用脚本。本指南介绍一次性命令、自行声明依赖的自包含脚本，以及如何为智能体使用场景设计脚本接口。
@@ -21,6 +21,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 
     - 不随 Python 提供，需要单独安装。
     - 速度快。积极缓存使重复运行几乎可以即时完成。
+
   </Tab>
   <Tab title="pipx">
     [pipx](https://pipx.pypa.io/) 会在隔离环境中运行 Python 软件包。可以通过操作系统的软件包管理器安装（`apt install pipx`、`brew install pipx`）。
@@ -32,6 +33,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 
     - 不随 Python 提供，需要单独安装。
     - 它是成熟的 `uvx` 替代方案。虽然 `uvx` 已成为标准建议，但 `pipx` 依然可靠，并能通过更多操作系统软件包管理器获得。
+
   </Tab>
   <Tab title="npx">
     [npx](https://docs.npmjs.com/cli/commands/npx) 用于运行 npm 软件包，并按需下载。它随 npm 提供，而 npm 随 Node.js 提供。
@@ -44,6 +46,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
     - 随 Node.js 提供，无需额外安装。
     - 下载并运行软件包，同时缓存以供后续使用。
     - 使用 `npx package@version` 固定版本，确保结果可复现。
+
   </Tab>
   <Tab title="bunx">
     [bunx](https://bun.sh/docs/cli/bunx) 是 Bun 中与 `npx` 对应的工具，随 [Bun](https://bun.sh/) 提供。
@@ -55,6 +58,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 
     - 在基于 Bun 的环境中可直接替代 `npx`。
     - 只有当用户环境使用 Bun 而非 Node.js 时才适用。
+
   </Tab>
   <Tab title="deno run">
     [deno run](https://docs.deno.com/runtime/reference/cli/run/) 可以直接从 URL 或说明符运行脚本，随 [Deno](https://deno.com/) 提供。
@@ -66,6 +70,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 
     - 访问文件系统或网络需要权限标志（`--allow-read` 等）。
     - 使用 `--` 分隔 Deno 标志和工具自身的标志。
+
   </Tab>
   <Tab title="go run">
     [go run](https://pkg.go.dev/cmd/go#hdr-Compile_and_run_Go_program) 可以直接编译并运行 Go 软件包，内置于 `go` 命令。
@@ -77,6 +82,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 
     - 内置于 Go，无需额外工具。
     - 固定版本，或使用 `@latest` 明确命令所用版本。
+
   </Tab>
 </Tabs>
 
@@ -105,6 +111,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 ## 工作流
 
 1. 运行验证脚本：
+
    ```bash
    bash scripts/validate.sh "$INPUT_FILE"
    ```
@@ -116,7 +123,8 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 ````
 
 <Note>
-同样的相对路径约定也适用于 `references/*.md` 等支持文件。代码块中的脚本执行路径相对于**技能目录根路径**，因为智能体会从该目录运行命令。
+  同样的相对路径约定也适用于 `references/*.md`
+  等支持文件。代码块中的脚本执行路径相对于**技能目录根路径**，因为智能体会从该目录运行命令。
 </Note>
 
 ## 自包含脚本 [#self-contained-scripts]
@@ -153,6 +161,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
     - 使用 [PEP 508](https://peps.python.org/pep-0508/) 说明符固定版本：`"beautifulsoup4>=4.12,<5"`。
     - 使用 `requires-python` 限制 Python 版本。
     - 使用 `uv lock --script` 创建锁文件，实现完全可复现。
+
   </Tab>
   <Tab title="Deno">
     Deno 的 `npm:` 和 `jsr:` 导入说明符让每个脚本默认自包含：
@@ -175,6 +184,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
     - 版本说明符遵循 semver：`@1.0.0`（精确版本）、`@^1.0.0`（兼容版本）。
     - 依赖会全局缓存。使用 `--reload` 强制重新获取。
     - 带有原生插件（node-gyp）的软件包可能无法工作；提供预构建二进制文件的软件包效果最好。
+
   </Tab>
   <Tab title="Bun">
     如果找不到 `node_modules` 目录，Bun 会在运行时自动安装缺少的软件包。请直接在导入路径中固定版本：
@@ -196,6 +206,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
     - 不需要 `package.json` 或 `node_modules`，原生支持 TypeScript。
     - 软件包会全局缓存。首次运行时下载，后续运行几乎即时完成。
     - 如果目录树上层的任何位置存在 `node_modules`，自动安装将被禁用，Bun 会回退到标准 Node.js 解析方式。
+
   </Tab>
   <Tab title="Ruby">
     从 Ruby 2.6 起，Bundler 随 Ruby 提供。使用 `bundler/inline` 直接在脚本中声明 gem：
@@ -219,6 +230,7 @@ description: "如何在技能中运行命令并附带可执行脚本。"
 
     - 明确固定版本（`gem 'nokogiri', '~> 1.16'`），因为没有锁文件。
     - 工作目录中已有的 `Gemfile` 或 `BUNDLE_GEMFILE` 环境变量可能造成干扰。
+
   </Tab>
 </Tabs>
 

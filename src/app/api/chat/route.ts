@@ -46,10 +46,7 @@ export async function POST(request: Request) {
   }
 
   const { createDocsAgent } = await import('@/lib/ai/docs-agent');
-  const signal = AbortSignal.any([
-    request.signal,
-    AbortSignal.timeout(requestTimeoutMs),
-  ]);
+  const signal = AbortSignal.any([request.signal, AbortSignal.timeout(requestTimeoutMs)]);
 
   return createAgentUIStreamResponse({
     agent: createDocsAgent(process.env.GOOGLE_GENERATIVE_AI_API_KEY),

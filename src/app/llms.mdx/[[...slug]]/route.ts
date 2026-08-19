@@ -4,10 +4,7 @@ import { siteConfig } from '@/site.config';
 
 export const revalidate = false;
 
-export async function GET(
-  _request: Request,
-  { params }: RouteContext<'/llms.mdx/[[...slug]]'>,
-) {
+export async function GET(_request: Request, { params }: RouteContext<'/llms.mdx/[[...slug]]'>) {
   if (!siteConfig.features.llms) {
     return new Response('Not Found', { status: 404 });
   }

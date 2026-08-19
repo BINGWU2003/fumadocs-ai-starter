@@ -16,11 +16,7 @@ import {
 import { usePathname } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from 'fumadocs-ui/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from 'fumadocs-ui/components/ui/popover';
 import { siteConfig, type ContextualActionId } from '@/site.config';
 
 interface ActionContext {
@@ -185,7 +181,13 @@ export function PageActions({ markdownUrl }: { markdownUrl: string }) {
           }
 
           return (
-            <a key={id} href={value} target="_blank" rel="noreferrer noopener" className={className}>
+            <a
+              key={id}
+              href={value}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={className}
+            >
               {content}
             </a>
           );

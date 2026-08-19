@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "endOfLine": "lf",
+  "printWidth": 100,
+  "semi": true,
+  "singleQuote": true,
+  "sortTailwindcss": {
+    "functions": ["buttonVariants", "cn"],
+    "stylesheet": "./src/app/global.css"
+  },
+  "trailingComma": "all"
+}

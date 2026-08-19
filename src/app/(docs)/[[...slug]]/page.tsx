@@ -44,9 +44,7 @@ export function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(
-  props: PageProps<'/[[...slug]]'>,
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps<'/[[...slug]]'>): Promise<Metadata> {
   const { slug } = await props.params;
   const page = source.getPage(slug);
   if (!page) notFound();

@@ -1,7 +1,7 @@
 ---
-title: "优化技能描述"
-sidebarTitle: "优化描述"
-description: "如何改进技能描述，使其针对相关提示词可靠触发。"
+title: '优化技能描述'
+sidebarTitle: '优化描述'
+description: '如何改进技能描述，使其针对相关提示词可靠触发。'
 ---
 
 技能只有在被激活时才能发挥作用。`SKILL.md` frontmatter 中的 `description` 字段，是智能体判断是否需要为给定任务加载技能的主要依据。描述不够具体，技能就不会在应该触发时触发；描述过于宽泛，技能又会在不该触发时触发。
@@ -31,7 +31,10 @@ description: "如何改进技能描述，使其针对相关提示词可靠触发
 
 ```json eval_queries.json
 [
-  { "query": "我在 ~/data/q4_results.xlsx 有一个表格，C 列是收入，D 列是支出——能否添加利润率列，并突出显示低于 10% 的项目？", "should_trigger": true },
+  {
+    "query": "我在 ~/data/q4_results.xlsx 有一个表格，C 列是收入，D 列是支出——能否添加利润率列，并突出显示低于 10% 的项目？",
+    "should_trigger": true
+  },
   { "query": "把这个 json 文件转成 yaml 最快的方法是什么", "should_trigger": false }
 ]
 ```
@@ -79,6 +82,7 @@ description: "如何改进技能描述，使其针对相关提示词可靠触发
 大多数智能体客户端都提供某种可观测信息，例如执行日志、工具调用历史或详细输出，让你能够查看运行期间查阅了哪些技能。如果智能体加载了技能的 `SKILL.md`，说明技能已触发；如果智能体没有查阅技能就继续处理，则说明没有触发。具体细节请查阅客户端文档。
 
 查询在以下情况下“通过”：
+
 - `should_trigger` 为 `true`，并且技能已调用；或者
 - `should_trigger` 为 `false`，并且技能未调用。
 
@@ -127,7 +131,7 @@ done | jq -s '.'
 ```
 
 <Tip>
-如果智能体客户端支持，可以在结果已经明确后提前停止运行：智能体要么查阅了技能，要么已经在未使用技能的情况下开始工作。这能显著减少运行完整评估集所需的时间和成本。
+  如果智能体客户端支持，可以在结果已经明确后提前停止运行：智能体要么查阅了技能，要么已经在未使用技能的情况下开始工作。这能显著减少运行完整评估集所需的时间和成本。
 </Tip>
 
 ## 使用训练集/验证集拆分避免过拟合 [#avoiding-overfitting-with-trainvalidation-splits]
@@ -160,7 +164,9 @@ done | jq -s '.'
 通常五轮迭代就足够了。如果性能没有改善，问题可能出在查询上（过于简单、过于困难或标签有误），而不是描述本身。
 
 <Tip>
-[`skill-creator`](https://github.com/anthropics/skills/tree/main/skills/skill-creator) 技能可以端到端自动执行此循环：拆分评估集、并行评估触发率、使用 Claude 提出描述改进建议，并生成可在运行时实时查看的 HTML 报告。
+  [`skill-creator`](https://github.com/anthropics/skills/tree/main/skills/skill-creator)
+  技能可以端到端自动执行此循环：拆分评估集、并行评估触发率、使用 Claude
+  提出描述改进建议，并生成可在运行时实时查看的 HTML 报告。
 </Tip>
 
 ## 应用结果 [#applying-the-result]

@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "mikestead.dotenv",
+    "ms-playwright.playwright",
+    "oxc.oxc-vscode",
+    "unifiedjs.vscode-mdx"
+  ]
+}

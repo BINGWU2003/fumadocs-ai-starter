@@ -1,6 +1,6 @@
 ---
-title: "快速入门"
-description: "创建你的第一个 Agent Skill，并在 VS Code 中查看运行效果。"
+title: '快速入门'
+description: '创建你的第一个 Agent Skill，并在 VS Code 中查看运行效果。'
 ---
 
 在本教程中，你将创建一个技能，让智能体能够使用随机数生成器掷骰子。
@@ -10,7 +10,8 @@ description: "创建你的第一个 Agent Skill，并在 VS Code 中查看运行
 - [VS Code](https://code.visualstudio.com/) with [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 
 <Note>
-本教程使用 VS Code，但 Agent Skills 是一种开放格式。同一个技能也能在任何兼容的智能体中使用，包括 Claude Code 和 OpenAI Codex。
+  本教程使用 VS Code，但 Agent Skills 是一种开放格式。同一个技能也能在任何兼容的智能体中使用，包括
+  Claude Code 和 OpenAI Codex。
 </Note>
 
 ## 创建技能 [#create-the-skill]
@@ -53,7 +54,7 @@ Get-Random -Minimum 1 -Maximum (<sides> + 1)
 智能体应该会激活 `roll-dice` 技能。它可能会请求运行终端命令的权限，请允许执行。随后它会运行命令并返回 1 到 20 之间的随机数。
 
 <Note>
-不同模型使用工具的可靠性有所差异：有些模型会稳定地遵循技能指令并运行命令，另一些则可能尝试自行作答。如果智能体没有运行终端命令就直接回答，请尝试从模型下拉列表中选择其他模型。
+  不同模型使用工具的可靠性有所差异：有些模型会稳定地遵循技能指令并运行命令，另一些则可能尝试自行作答。如果智能体没有运行终端命令就直接回答，请尝试从模型下拉列表中选择其他模型。
 </Note>
 
 ## 工作原理 [#how-it-works]

@@ -6,10 +6,7 @@ import { siteConfig } from '@/site.config';
 
 export const revalidate = false;
 
-export async function GET(
-  _request: Request,
-  { params }: RouteContext<'/og/[...slug]'>,
-) {
+export async function GET(_request: Request, { params }: RouteContext<'/og/[...slug]'>) {
   const { slug } = await params;
   const page = source.getPage(slug.slice(0, -1));
   if (!page) notFound();

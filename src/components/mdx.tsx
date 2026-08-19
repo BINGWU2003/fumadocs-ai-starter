@@ -30,12 +30,7 @@ function Card({ title, icon, children, className, ...props }: CardProps) {
 
   if (title !== undefined) {
     return (
-      <FumadocsCard
-        {...props}
-        className={className}
-        icon={renderedIcon}
-        title={title}
-      >
+      <FumadocsCard {...props} className={className} icon={renderedIcon} title={title}>
         {children}
       </FumadocsCard>
     );
